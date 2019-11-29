@@ -31,32 +31,40 @@ create table PARTIES
 -- ====================================================================
 create table JEU
 ( -- A verifier
-  foreign key (ID_PARTIE)  references PARTIE(ID_PARTIE),
-  foreign key (ID_JOUEUR1) references JOUEUR(ID_JOUEUR),
-  foreign key (ID_JOUEUR2) references JOUEUR(ID_JOUEUR),
+  ID_PARTIE INT not null,
+  ID_JOUEUR1 INT not null,
+  ID_JOUEUR2 INT not null,
   ID_VICTOIRE Int
 );
 
--- alter table JEU
---   add constraint fk1_partie foreign key (ID_PARTIE)
---     references PARTIE(ID_PARTIE);
---
--- alter table JEU
---   add constraint fk2_partie foreign key (ID_JOUEUR1)
---     references JOUEURS(ID_JOUEUR);
---
--- alter table JEU
---   add constraint fk3_partie foreign key (ID_JOUEUR2)
---     references JOUEURS(ID_JOUEUR);
+alter table JEU
+  add constraint fk1_partie foreign key (ID_PARTIE)
+    references PARTIE(ID_PARTIE);
+
+alter table JEU
+  add constraint fk2_partie foreign key (ID_JOUEUR1)
+    references JOUEURS(ID_JOUEUR);
+
+alter table JEU
+  add constraint fk3_partie foreign key (ID_JOUEUR2)
+    references JOUEURS(ID_JOUEUR);
 
 -- ====================================================================
 -- Table : UTILISATIONS
 -- ====================================================================
 create table UTILISATIONS
 ( -- A verifier
-  foreign key (ID_PARTIE) references PARTIE(ID_PARTIE),
-  foreign key (ID_JOUEUR) references JOUEUR(ID_JOUEUR),
+  ID_PARTIE INT not null,
+  ID_JOUEUR INT not null
 );
+
+alter table UTILISATIONS
+  add constraint fk1_utilisations foreign key (ID_PARTIE)
+    references PARTIES(ID_PARTIE);
+
+alter table UTILISATIONS
+  add constraint fk2_utilisations foreign key (ID_JOUEUR)
+    references JOUEURS(ID_JOUEUR);
 
 -- ====================================================================
 -- Table : JOUEURS
@@ -75,9 +83,17 @@ create table JOUEURS
 -- ====================================================================
 create table POSSESSIONS_EXEMPLAIRES
 ( -- A vérifier
-  foreign key (ID_JOUEUR) references JOUEUR(ID_JOUEUR),
-  foreign key (ID_EXEMPLAIRE) references EXEMPLAIRE(ID_EXEMPLAIRE),
+  ID_JOUEUR INT not null,
+  ID_EXEMPLAIRE INT not null
 );
+
+alter table POSSESSIONS_EXEMPLAIRES
+  add constraint fk1_possessions_exemplaires foreign key (ID_JOUEUR)
+    references JOUEURS(ID_JOUEUR);
+
+alter table POSSESSIONS_EXEMPLAIRES
+  add constraint fk2_possessions_exemplaires foreign key (ID_EXEMPLAIRE)
+    references EXEMPLAIRES(ID_EXEMPLAIRE);
 
 -- ====================================================================
 -- Table : EXEMPLAIRES
@@ -90,10 +106,18 @@ create table EXEMPLAIRES
   MODE_ACQUISITION VARCHAR(100),
   QUALITE          INT,
   EFFET VARCHAR(100),
-  foreign key (ID_EDITION) references EDITION(ID_EDITION),
-  foreign key (ID_CARTE) references CARTE(ID_CARTE),
+  ID_EDITION INT not null,
+  ID_CARTE INT not null,
   constraint pk_exemplaires primary key (ID_EXEMPLAIRE)
 );
+
+alter table EXEMPLAIRES
+  add constraint fk2_exemplaires foreign key (ID_EDITION)
+    references EDITION(ID_EDITION);
+
+alter table POSSESSIONS_EXEMPLAIRES
+  add constraint fk2_exemplaires foreign key (ID_CARTE)
+    references CARTES(ID_CARTE);
 
 -- ====================================================================
 -- Table : EDITIONS
@@ -101,7 +125,7 @@ create table EXEMPLAIRES
 create table EDITIONS
 (
   ID_EDITION INT not null,
-  NomEdition VARCHAR(100),
+  NOM_EDITION VARCHAR(100),
   constraint pk_editions primary key (ID_EDITION)
 );
 
@@ -110,11 +134,19 @@ create table EDITIONS
 -- ====================================================================
 create table APPARTENANCES
 (
-  foreign key (ID_EDITION) references EDITION(ID_EDITION),
-  foreign key (ID_CARTE) references CARTE(ID_CARTE)
-  NbTirages INT,
-  Cote INT
+  ID_EDITION INT not null,
+  ID_CARTE INT not null,
+  NB_TIRAGE INT,
+  COTE INT
 );
+
+alter table APPARTENANCES
+  add constraint fk1_appartenances foreign key (ID_EDITION)
+    references EDITIONS(ID_EDITION);
+
+alter table APPARTENANCES
+  add constraint fk2_appartenances foreign key (ID_CARTE)
+    references CARTES(ID_CARTE);
 
 -- ====================================================================
 -- Table : CARTES
@@ -137,28 +169,48 @@ create table DECKS
 (
   ID_DECK INT not null,
   foreign key (ID_JOUEUR) references JOUEUR(ID_JOUEUR),
-  NOM_DECK VARCHAR(100);
+  NOM_DECK VARCHAR(100),
   constraint pk_decks primary key (ID_DECK)
 );
+
+alter table DECKS
+  add constraint fk1_decks foreign key (ID_JOUEUR)
+    references JOUEURS(ID_JOUEUR);
 
 -- ====================================================================
 -- Table : PARTIE
 -- ====================================================================
 create table CONTENANCE
 (
-  foreign key (ID_DECK) references DECK(ID_DECK),
-  foreign key (ID_CARTE) references CARTE(ID_CARTE),
-  NOMBRE_CARTES INT
+  ID_DECK INT not null,
+  ID_CARTE INT not null,
+  NB_CARTES INT
 );
+
+alter table CONTENANCE
+  add constraint fk1_contenances foreign key (ID_DECK)
+    references DECKS(ID_DECK);
+
+alter table CONTENANCE
+  add constraint fk2_contenances foreign key (ID_CARTE)
+    references CARTES(ID_CARTE);
 
 -- ====================================================================
 -- Table : PARTIE
 -- ====================================================================
 create table POSSESSIONS_CARACTERISTIQUES
 ( -- On en a besoin ?
-  foreign key ( ID_CARTE) references CARTE(ID_CARTE),
-  foreign key ( ID_CARACTERISTIQUES) references CARACTERISTIQUES(ID_CARACTERISTIQUES)
+  ID_CARTE INT not null,
+  ID_CARACTERISTIQUES INT not null
 );
+
+alter table POSSESSIONS_CARACTERISTIQUES
+  add constraint fk1_possessions_caracteristiques foreign key (ID_CARTE)
+    references CARTES(ID_CARTE);
+
+alter table POSSESSIONS_CARACTERISTIQUES
+  add constraint fk2_possessions_caracteristiques foreign key (ID_CARACTERISTIQUES)
+    references CARACTERISTIQUES(ID_CARACTERISTIQUES);
 
 -- ====================================================================
 -- Table : PARTIE
