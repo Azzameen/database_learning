@@ -1,15 +1,16 @@
-Create view JoueursNbCartes as(
-  Select IdJoueur,Nom,Prenom,Pseudonyme,count(*) from JOUEUR
-  natural join DECK -- a remplacer par des join normaux
-  natural join CONTENIR
-  natural join CARTE
-  group by IdJoueur);
+Create view Nombre_de_cartes_par_joueur as(
+  Select JOUEURS.ID_JOUEUR, JOUEURS.NOM_JOUEUR, JOUEURS.PRENOM_JOUEUR,
+  JOUEURS.PSEUDONYME_JOUEUR, count(POSSESSIONS_EXEMPLAIRES.ID_EXEMPLAIRE)
+  from POSSESSIONS_EXEMPLAIRES
+  INNER JOIN JOUEURS on JOUEURS.ID_JOUEUR = POSSESSIONS_EXEMPLAIRES.ID_JOUEUR
+  group by POSSESSIONS_EXEMPLAIRES.ID_JOUEUR);
 
-Create view JoueursClassement as(
-  Select IdJoueur,Nom,Prenom,Pseudonyme,sum((Qualite/100)*Cote)
-  from JOUEUR
-  natural join EXEMPLAIRE
-  natural join EDITION
-  natural join APPARTENIR
-  group by IdJoueur
+Create view classement_joueurs as(
+  Select JOUEURS.*
+  sum((EXEMPLAIRES.QUALITE/100)*APPARTENANCES.COTE) as VALEUR
+  from JOUEURS
+  natural join EXEMPLAIRES
+  natural join APPARTENANCES
+  group by ID_JOUEUR
+  order by VALEUR
 )
