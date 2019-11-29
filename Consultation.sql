@@ -6,16 +6,16 @@ begin
 end;
 /
 
-create view List_type as
+create view Liste_type as
   (select * from CARTES
   where CARTES.TYPE_CARTE = typeUtilisateur);
 
-create view List_no_deck as
+create view Liste_sans_deck as
   (select * from Cartes
   minus
   (select CONTENANCE.ID_CARTE from Contenance));
 
-create view list_collectionneur as
+create view liste_collectionneur as
   (select * from JOUEURS
   minus
   (select UTILISATIONS.ID_JOUEUR from UTILISATION));
