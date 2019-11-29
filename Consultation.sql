@@ -8,7 +8,7 @@ end;
 
 create view List_type as
   (select * from CARTES
-  where CARTES.TYPE_CARTE = typeUtilisateur); -- A chenger en fonctiond de ce que veut recherché l'utilisateur
+  where CARTES.TYPE_CARTE = typeUtilisateur);
 
 create view List_no_deck as
   (select * from Cartes
