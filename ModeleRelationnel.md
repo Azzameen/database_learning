@@ -1,1 +1,13 @@
-PARTIE(__IdPartie)
+PARTIE(__IdPartie__, Lieu, Date, Type);
+JEU(__#IdPartie__, __#IdJoueur1__, __#IdJoueur2__, IdVictoire);
+UTILISATIONS(__#IdPartie__, __#IdJoueur__);
+JOUEURS(__IdJoueur__, Nom, Prenom, Pseudonyme);
+POSSESSIONS_EXEMPLAIRES(__#IdJoueur__, __#IdExemplaire__);
+EXEMPLAIRES(__IdExemplaire__, __#IdEdition__, __#IdCarte__, DateAcquisition, DatePerte, ModeAcquisition, Qualite, Effet);
+EDITIONS(__IdEdition__, NomEdition);
+APPARTENANCES(__#IdEdition__, __#IdCarte__, NbTirages, Cote);
+CARTES(__IdCarte__, Titre, DescCarte, Type, Nature, Niveau);
+DECKS(__IdDeck__,#IdJoueur, NomDeck);
+CONTENANCE(__#IdDeck__, __#IdCarte__, NbCartes);
+POSSESSIONS_CARACTERISTIQUES(__#IdCarte__, __#IdCaracteristique__);
+CARACTERISTIQUE(__IdCaracteristique__, DescCaracteristique, Valeurs);
