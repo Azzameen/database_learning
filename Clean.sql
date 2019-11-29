@@ -1,0 +1,11 @@
+drop table PARTIES;
+drop table JOUEURS;
+drop table POSSESSIONS_EXEMPLAIRES;
+drop table EXEMPLAIRES;
+drop table EDITIONS;
+drop table APPARTENANCES;
+drop table CARTES;
+drop table DECKS;
+drop table CONTENANCE;
+drop table POSSESSIONS_CARACTERISTIQUES;
+drop table CARACTERISTIQUES;

@@ -14,88 +14,159 @@
 
 -- NOTE : j'ai pas fait comme sur les exemples de TP, nottament sur les foreign keys
 
-create table PARTIE(
-  IdPartie INT PRIMARY KEY NOT NULL,
-  Lieu varchar(100),
-  Date DATE,
-  TypeTournoi varchar(100)
+-- ====================================================================
+-- Table : PARTIES
+-- ====================================================================
+create table PARTIES
+(
+  ID_PARTIE INT not null,
+  LIEU VARCHAR(100),
+  DATE_PARTIE DATE,
+  TYPE_TOURNOI VARCHAR(100),
+  constraint pk_parties primary key (ID_PARTIE)
 );
 
-create table JEU( -- A verifier
-  foreign key (#IdPartie) references PARTIE(IdPartie),
-  foreign key (#IdJoueur1) references JOUEUR(IdJoueur),
-  foreign key (#IdJoueur2) references JOUEUR(IdJoueur),
-  IdVictoire Int
+-- ====================================================================
+-- Table : JEU
+-- ====================================================================
+create table JEU
+( -- A verifier
+  foreign key (ID_PARTIE)  references PARTIE(ID_PARTIE),
+  foreign key (ID_JOUEUR1) references JOUEUR(ID_JOUEUR),
+  foreign key (ID_JOUEUR2) references JOUEUR(ID_JOUEUR),
+  ID_VICTOIRE Int
 );
 
-create table UTILISATIONS( -- A verifier
-  foreign key (#IdPartie) references PARTIE(IdPartie),
-  foreign key (#IdJoueur) references JOUEUR(IdJoueur),
+-- alter table JEU
+--   add constraint fk1_partie foreign key (ID_PARTIE)
+--     references PARTIE(ID_PARTIE);
+--
+-- alter table JEU
+--   add constraint fk2_partie foreign key (ID_JOUEUR1)
+--     references JOUEURS(ID_JOUEUR);
+--
+-- alter table JEU
+--   add constraint fk3_partie foreign key (ID_JOUEUR2)
+--     references JOUEURS(ID_JOUEUR);
+
+-- ====================================================================
+-- Table : UTILISATIONS
+-- ====================================================================
+create table UTILISATIONS
+( -- A verifier
+  foreign key (ID_PARTIE) references PARTIE(ID_PARTIE),
+  foreign key (ID_JOUEUR) references JOUEUR(ID_JOUEUR),
 );
 
-create table JOUEURS(
-  IdJoueur INT PRIMARY KEY,
-  Nom varchar(100),
-  Prenom varchar(100),
-  Pseudonyme varchar(100)
+-- ====================================================================
+-- Table : JOUEURS
+-- ====================================================================
+create table JOUEURS
+(
+  ID_JOUEUR INT not null,
+  NOM_JOUEUR VARCHAR(100),
+  PRENOM_JOUEUR VARCHAR(100),
+  PSEUDONYME VARCHAR(100),
+  constraint pk_joueurs primary key (ID_JOUEUR)
 );
 
-create table POSSESSIONS_EXEMPLAIRES( -- A vérifier
-  foreign key (#IdJoueur) references JOUEUR(IdJoueur),
-  foreign key (#IdExemplaire) references EXEMPLAIRE(IdExemplaire),
+-- ====================================================================
+-- Table : POSSESSIONS_EXEMPLAIRES
+-- ====================================================================
+create table POSSESSIONS_EXEMPLAIRES
+( -- A vérifier
+  foreign key (ID_JOUEUR) references JOUEUR(ID_JOUEUR),
+  foreign key (ID_EXEMPLAIRE) references EXEMPLAIRE(ID_EXEMPLAIRE),
 );
 
-create table EXEMPLAIRES(
-  IdExemplaire INT PRIMARY KEY,
-  DateAcquisition DATE,
-  DatePerte DATE,
-  ModeAcquisition varchar(100),
-  Qualite INT,
-  Effet varchar(100),
-  foreign key (#IdEdition) references EDITION(IdEdition),
-  foreign key (#IdCarte) references CARTE(IdCarte)
+-- ====================================================================
+-- Table : EXEMPLAIRES
+-- ====================================================================
+create table EXEMPLAIRES
+(
+  ID_EXEMPLAIRE    INT     not null,
+  DATE_ACQUISITION DATE,
+  DATE_PERTE       DATE,
+  MODE_ACQUISITION VARCHAR(100),
+  QUALITE          INT,
+  EFFET VARCHAR(100),
+  foreign key (ID_EDITION) references EDITION(ID_EDITION),
+  foreign key (ID_CARTE) references CARTE(ID_CARTE),
+  constraint pk_exemplaires primary key (ID_EXEMPLAIRE)
 );
 
-create table EDITIONS(
-  IdEdition INT PRIMARY KEY,
-  NomEdition varchar(100)
+-- ====================================================================
+-- Table : EDITIONS
+-- ====================================================================
+create table EDITIONS
+(
+  ID_EDITION INT not null,
+  NomEdition VARCHAR(100),
+  constraint pk_editions primary key (ID_EDITION)
 );
 
-create table APPARTENANCES(
-  foreign key (#IdEdition) references EDITION(IdEdition),
-  foreign key (#IdCarte) references CARTE(IdCarte)
+-- ====================================================================
+-- Table : APPARTENANCES
+-- ====================================================================
+create table APPARTENANCES
+(
+  foreign key (ID_EDITION) references EDITION(ID_EDITION),
+  foreign key (ID_CARTE) references CARTE(ID_CARTE)
   NbTirages INT,
-  Carte varchar(100)
+  Cote INT
 );
 
-create table CARTES(
-  IdCarte PRIMARY KEY,
-  Titre varchar(100),
-  DescCarte varchar(1000),
-  Type varchar(20),
-  Nature varchar(20),
-  Niveau INT
+-- ====================================================================
+-- Table : CARTES
+-- ====================================================================
+create table CARTES
+(
+  ID_CARTE INT not null,
+  TITRE VARCHAR(100),
+  DESCRIPTION_CARTE VARCHAR(1000),
+  TYPE_CARTE VARCHAR(20),
+  NATURE_CARTE VARCHAR(20),
+  NIVEAU_CARTE INT,
+  constraint pk_cartes primary key (ID_CARTE)
 );
 
-create table DECKS(
-  IdDeck INT PRIMARY KEY,
-  foreign key (#IdJoueur) references JOUEUR(IdJoueur),
-  NomDeck varchar(100)
+-- ====================================================================
+-- Table : DECKS
+-- ====================================================================
+create table DECKS
+(
+  ID_DECK INT not null,
+  foreign key (ID_JOUEUR) references JOUEUR(ID_JOUEUR),
+  NOM_DECK VARCHAR(100);
+  constraint pk_decks primary key (ID_DECK)
 );
 
-create table CONTENANCE(
-  foreign key (#IdDeck) references DECK(IdDeck),
-  foreign key (#IdCarte) references CARTE(IdCarte),
-  NbCartes INT
+-- ====================================================================
+-- Table : PARTIE
+-- ====================================================================
+create table CONTENANCE
+(
+  foreign key (ID_DECK) references DECK(ID_DECK),
+  foreign key (ID_CARTE) references CARTE(ID_CARTE),
+  NOMBRE_CARTES INT
 );
 
-create table POSSESSIONS_CARACTERISTIQUES( -- On en a besoin ?
-  foreign key (#IdCarte) references CARTE(IdCarte),
-  foreign key (#IdCaracteristique) references CARACTERISTIQUE(IdCaracteristique)
+-- ====================================================================
+-- Table : PARTIE
+-- ====================================================================
+create table POSSESSIONS_CARACTERISTIQUES
+( -- On en a besoin ?
+  foreign key ( ID_CARTE) references CARTE(ID_CARTE),
+  foreign key ( ID_CARACTERISTIQUES) references CARACTERISTIQUES(ID_CARACTERISTIQUES)
 );
 
-create table CARACTERISTIQUE(
-  IdCaracteristique INT PRIMARY KEY,
-  DescCaracteristique varchar(1000),
-  Valeurs INT
+-- ====================================================================
+-- Table : PARTIE
+-- ====================================================================
+create table CARACTERISTIQUES
+(
+  ID_CARACTERISTIQUES INT not null,
+  DESCRIPTION_CARACTERISTIQUES VARCHAR(1000),
+  VALEURS INT,
+  constraint pk_carateristique primary key (ID_CARACTERISTIQUES)
 );
