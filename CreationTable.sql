@@ -64,8 +64,7 @@ create table JOUEURS
 create table POSSESSIONS_EXEMPLAIRES
 ( -- A vérifier
   ID_JOUEUR INT not null,
-  ID_EXEMPLAIRE INT not null,
-  ID_CARTE INT not null
+  ID_EXEMPLAIRE INT not null
 );
 
 -- ====================================================================
@@ -187,10 +186,6 @@ alter table UTILISATIONS
 alter table EXEMPLAIRES
   add constraint fk1_exemplaires foreign key (ID_EDITION)
     references EDITIONS(ID_EDITION);
-
-alter table POSSESSIONS_EXEMPLAIRES
-  add constraint fk2_exemplaires foreign key (ID_CARTE)
-    references CARTES(ID_CARTE);
 
 alter table APPARTENANCES
   add constraint fk1_appartenances foreign key (ID_EDITION)
