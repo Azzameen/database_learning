@@ -2,7 +2,7 @@
   padding: 60px;
   text-align: center;
   background-color: #4169E1;
-  color: #A9A9A9;
+  color: Black;
   font-size: 30px;
 }
 nav ul{
@@ -11,15 +11,16 @@ nav ul{
   list-style-type: none;
 }
 nav li{
-  display: inline-block;
-  width: 25%;
-  height: 5%;
-  margin: 0px;
-  padding: 0px;
-  background-color: #5599ab;
-  border-right: 1px solid #5599ab;
+  border-radius:12px 0 12px 0;
+	background: #478bf9;
+	border:none;
+	color:#fff;
+	font:bold 12px Verdana;
+  padding: 10px 24px;
   text-align: center;
-  line-height: 5%;
+  width: 21%;
+  position: center;
+  float: left;
 }
 nav li: hover{
   background-color: #111FFF;
@@ -27,5 +28,5 @@ nav li: hover{
 nav li a{
   display: block;
   text-decoration: none;
-  color:#5599ab;
+  color:white;
 }
