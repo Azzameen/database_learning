@@ -1,8 +1,8 @@
 declare
-  tyepUtilisateur = varchar(100);
+  typeUtilisateur varchar(100);
 
 begin
-  typeUtilisateur = $1;
+  set typeUtilisateur = $1;
 end;
 /
 
@@ -18,4 +18,4 @@ create view Liste_sans_deck as
 create view liste_collectionneur as
   (select * from JOUEURS
   minus
-  (select UTILISATIONS.ID_JOUEUR from UTILISATION));
+  (select UTILISATIONS.ID_JOUEUR from UTILISATIONS));
