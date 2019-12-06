@@ -81,27 +81,27 @@ insert into EDITIONS values (3, 'MRD');
 commit;
 
 -- EXEMPLAIRES
-insert into EXEMPLAIRES values ( 1, '03-FEB-01', '01-FEB-03', 'ECHANGE', 90, 'AUCUN', 1, 1 ) ;
-insert into EXEMPLAIRES values ( 2, '03-FEB-01', '01-FEB-03', 'ACHAT', 100, 'AUCUN', 1, 1 ) ;
-insert into EXEMPLAIRES values ( 3, '05-APR-03', '03-APR-05', 'ACHAT', 100, 'BRILLANT', 1, 1 ) ;
-insert into EXEMPLAIRES values ( 4, '08-JUL-06', '06-JUL-08', 'TROUVE', 50, 'BRILLANT', 2, 3 ) ;
-insert into EXEMPLAIRES values ( 5, '08-JUL-06', '06-JUL-08', 'ACHAT', 100, 'AUCUN', 2, 4 ) ;
-insert into EXEMPLAIRES values ( 6, '08-JUL-06', '06-JUL-08', 'ECHANGE', 60, 'SOMBRE', 3, 5 ) ;
-insert into EXEMPLAIRES values ( 7, '11-OCT-09', '09-OCT-11', 'TROUVE', 90, 'SOMBRE', 3, 5 ) ;
-insert into EXEMPLAIRES values ( 8, '11-OCT-09', '09-OCT-11', 'ECHANGE', 90, 'AUCUN', 1, 5 ) ;
-insert into EXEMPLAIRES values ( 9, '11-OCT-09', '09-OCT-11', 'ECHANGE', 1, 'AUCUN', 2, 6 ) ;
-insert into EXEMPLAIRES values ( 10, '01-JAN-01', '02-FEB-02', 'ACHAT', 95, 'BRILLANT', 2, 7 ) ;
-insert into EXEMPLAIRES values ( 11, '01-JAN-01', '02-FEB-02', 'ECHANGE', 100, 'AUCUN', 1, 8 ) ;
-insert into EXEMPLAIRES values ( 12, '01-JAN-01', '02-FEB-02', 'ECHANGE', 50, 'COLLECTOR', 3, 9 ) ;
-insert into EXEMPLAIRES values ( 13, '03-MAR-03', '04-APR-04', 'ACHAT', 90, 'AUCUN', 1, 1 ) ;
-insert into EXEMPLAIRES values ( 14, '03-MAR-03', '04-APR-04', 'ECHANGE', 100, 'AUCUN', 1, 1 ) ;
-insert into EXEMPLAIRES values ( 15, '03-MAR-03', '04-APR-04', 'ECHANGE', 90, 'BRILLANT', 2, 2 ) ;
-insert into EXEMPLAIRES values ( 16, '01-FEB-03', '04-APR-04', 'ECHANGE', 80, 'SOMBRE', 3, 3 ) ;
-insert into EXEMPLAIRES values ( 17, '04-APR-04', '05-MAY-05', 'ECHANGE', 100, 'AUCUN', 1, 1 ) ;
-insert into EXEMPLAIRES values ( 18, '04-APR-04', '05-MAY-05', 'ECHANGE', 90, 'BRILLANT', 2, 2 ) ;
-insert into EXEMPLAIRES values ( 19, '04-APR-04', '05-MAY-05', 'ECHANGE', 80, 'SOMBRE', 3, 3 ) ;
-insert into EXEMPLAIRES values ( 20, '01-DEC-19', NULL, 'ACHAT', 90, 'AUCUN', 1, 10 ) ;
-insert into EXEMPLAIRES values ( 21, '01-FEB-03', NULL, 'ECHANGE', 90, 'SOMBRE', 2, 11 ) ;
+insert into EXEMPLAIRES values ( 1, '03-FEB-01', '01-FEB-03', 'ECHANGE', 90, 'AUCUN', 1, 1, '02-JAN-01') ;
+insert into EXEMPLAIRES values ( 2, '03-FEB-01', '01-FEB-03', 'ACHAT', 100, 'AUCUN', 1, 1, '02-JAN-01' ) ;
+insert into EXEMPLAIRES values ( 3, '05-APR-03', '03-APR-05', 'ACHAT', 100, 'BRILLANT', 1, 1 , '17-MAR-04' ) ;
+insert into EXEMPLAIRES values ( 4, '08-JUL-06', '06-JUL-08', 'TROUVE', 50, 'BRILLANT', 2, 3, '17-MAR-04' ) ;
+insert into EXEMPLAIRES values ( 5, '08-JUL-06', '06-JUL-08', 'ACHAT', 100, 'AUCUN', 2, 4, '17-MAR-04' ) ;
+insert into EXEMPLAIRES values ( 6, '08-JUL-06', '06-JUL-08', 'ECHANGE', 60, 'SOMBRE', 3, 5, '17-MAR-04' ) ;
+insert into EXEMPLAIRES values ( 7, '11-OCT-09', '09-OCT-11', 'TROUVE', 90, 'SOMBRE', 3, 5, '25-OCT-08' ) ;
+insert into EXEMPLAIRES values ( 8, '11-OCT-09', '09-OCT-11', 'ECHANGE', 90, 'AUCUN', 1, 5, '25-OCT-08' ) ;
+insert into EXEMPLAIRES values ( 9, '11-OCT-09', '09-OCT-11', 'ECHANGE', 1, 'AUCUN', 2, 6, '25-OCT-08' ) ;
+insert into EXEMPLAIRES values ( 10, '01-JAN-01', '02-FEB-02', 'ACHAT', 95, 'BRILLANT', 2, 7, '01-JAN-00' ) ;
+insert into EXEMPLAIRES values ( 11, '01-JAN-01', '02-FEB-02', 'ECHANGE', 100, 'AUCUN', 1, 8, '01-JAN-00' ) ;
+insert into EXEMPLAIRES values ( 12, '01-JAN-01', '02-FEB-02', 'ECHANGE', 50, 'COLLECTOR', 3, 9, '01-JAN-00' ) ;
+insert into EXEMPLAIRES values ( 13, '03-MAR-03', '04-APR-04', 'ACHAT', 90, 'AUCUN', 1, 1, '03-MAR-02' ) ;
+insert into EXEMPLAIRES values ( 14, '03-MAR-03', '04-APR-04', 'ECHANGE', 100, 'AUCUN', 1, 1, '03-MAR-02' ) ;
+insert into EXEMPLAIRES values ( 15, '03-MAR-03', '04-APR-04', 'ECHANGE', 90, 'BRILLANT', 2, 2, '03-MAR-02' ) ;
+insert into EXEMPLAIRES values ( 16, '01-FEB-03', '04-APR-04', 'ECHANGE', 80, 'SOMBRE', 3, 3, '03-MAR-02' ) ;
+insert into EXEMPLAIRES values ( 17, '04-APR-04', '05-MAY-05', 'ECHANGE', 100, 'AUCUN', 1, 1, '05-MAY-03' ) ;
+insert into EXEMPLAIRES values ( 18, '04-APR-04', '05-MAY-05', 'ECHANGE', 90, 'BRILLANT', 2, 2, '05-MAY-03' ) ;
+insert into EXEMPLAIRES values ( 19, '04-APR-04', '05-MAY-05', 'ECHANGE', 80, 'SOMBRE', 3, 3, '05-MAY-03' ) ;
+insert into EXEMPLAIRES values ( 20, '01-DEC-19', NULL, 'ACHAT', 90, 'AUCUN', 1, 10, '01-DEC-18' ) ;
+insert into EXEMPLAIRES values ( 21, '01-FEB-03', NULL, 'ECHANGE', 90, 'SOMBRE', 2, 11, '01-FEB-02' ) ;
 
 commit;
 

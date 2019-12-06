@@ -80,6 +80,7 @@ create table EXEMPLAIRES
   EFFET VARCHAR(100),
   ID_EDITION INT not null,
   ID_CARTE INT not null,
+  DATE_IMPRESSION DATE,
   constraint pk_exemplaires primary key (ID_EXEMPLAIRE)
 );
 
