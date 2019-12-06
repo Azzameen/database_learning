@@ -15,3 +15,10 @@ Create view Classement_joueurs as(
   group by ID_JOUEUR, NOM_JOUEUR, PRENOM_JOUEUR, PSEUDONYME
   -- order by VALEUR
 );
+
+Create view Cartes_par_joueur as(
+  Select CARTES.TITRE, sum(DECKS.ID_JOUEUR) AS NOMBRE_UTILISATIONS from (CARTES
+  join CONTENANCE on CARTES.ID_CARTE = CONTENANCE.ID_CARTE)
+  join DECKS on CONTENANCE.ID_DECK = DECKS.ID_DECK
+  group by CARTES.TITRE
+);

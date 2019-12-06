@@ -5,8 +5,8 @@
   <title> Pierre le respo site </title>
   <link rel="stylesheet" type="text/css" href="Style.css">
 </head> <body> <div class="header">
-  <h1> Pierre le respo site <h1>
-    <h2> #Branl'eirb #Mauvais <h2>
+  <!-- <h1> Pierre le respo site <h1>
+    <h2> #Branl'eirb #Mauvais <h2> -->
     </div>
     <nav>
       <ul>
