@@ -130,7 +130,7 @@ create table DECKS
 );
 
 -- ====================================================================
--- Table : PARTIE
+-- Table : CONTENANCE
 -- ====================================================================
 create table CONTENANCE
 (
@@ -140,7 +140,7 @@ create table CONTENANCE
 );
 
 -- ====================================================================
--- Table : PARTIE
+-- Table : POSSESSIONS_CARACTERISTIQUES
 -- ====================================================================
 create table POSSESSIONS_CARACTERISTIQUES
 ( -- On en a besoin ?
@@ -149,12 +149,12 @@ create table POSSESSIONS_CARACTERISTIQUES
 );
 
 -- ====================================================================
--- Table : PARTIE
+-- Table : CARACTERISTQUES
 -- ====================================================================
 create table CARACTERISTIQUES
 (
   ID_CARACTERISTIQUES INT not null,
-  DESC_CARACTERISTIQUES VARCHAR(1000),
+  DESC_CARACTERISTIQUES VARCHAR(100),
   VALEURS INT,
   constraint pk_carateristique primary key (ID_CARACTERISTIQUES)
 );

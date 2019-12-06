@@ -1,21 +1,21 @@
-declare
-  typeUtilisateur varchar(100);
+-- declare
+--   typeUtilisateur varchar(100);
+--
+-- begin
+--   set typeUtilisateur = $1;
+-- end;
+-- /
 
-begin
-  set typeUtilisateur = $1;
-end;
-/
-
-create view Liste_type as
+create view Liste_type_carte as
   (select * from CARTES
-  where CARTES.TYPE_CARTE = typeUtilisateur);
+  where TYPE_CARTE = 'Monstre normal');
 
-create view Liste_sans_deck as
-  (select * from Cartes
+create view Liste_sans_deck as -- NOTE : changé le premier select * en select ID_CARTE (sinon fonctionne pas)
+  (select ID_CARTE from Cartes
   minus
-  (select CONTENANCE.ID_CARTE from Contenance));
+  (select ID_CARTE from Contenance));
 
-create view liste_collectionneur as
-  (select * from JOUEURS
+create view Liste_collectionneur as -- NOTE : idem
+  (select ID_JOUEUR from JOUEURS
   minus
-  (select UTILISATIONS.ID_JOUEUR from UTILISATIONS));
+  (select ID_JOUEUR from UTILISATIONS));

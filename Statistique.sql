@@ -6,12 +6,12 @@ Create view Nombre_de_cartes_par_joueur as(
   group by JOUEURS.ID_JOUEUR, JOUEURS.NOM_JOUEUR, JOUEURS.PRENOM_JOUEUR, JOUEURS.PSEUDONYME
 );
 
-Create view classement_joueurs as(
-  Select ID_JOUEUR, NOM_JOUEUR, PRENOM_JOUEUR, PSEUDONYME
+Create view Classement_joueurs as(
+  Select ID_JOUEUR, NOM_JOUEUR, PRENOM_JOUEUR, PSEUDONYME,
   sum((EXEMPLAIRES.QUALITE/100)*APPARTENANCES.COTE) as VALEUR
   from JOUEURS
   natural join EXEMPLAIRES
   natural join APPARTENANCES
   group by ID_JOUEUR, NOM_JOUEUR, PRENOM_JOUEUR, PSEUDONYME
-  order by VALEUR
+  -- order by VALEUR
 );
