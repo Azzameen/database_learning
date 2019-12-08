@@ -34,13 +34,13 @@ insert into JOUEURS values ( 7, 'JOHNNY ', 'JOESTAR', 'JOJO6') ;
 commit;
 
 -- PARTIES
-insert into PARTIES values (  1 , 'TALENCE', '01-Jan-01', 'LOCAL'  ) ;
-insert into PARTIES values (  2 , 'PESSAC','02-FEB-02' ,'LOCAL'  ) ;
-insert into PARTIES values (  3 , 'BORDEAUX', '03-MAR-03', 'REGIONAL'  ) ;
-insert into PARTIES values (  4 , 'MOUAIS', '04-APR-04', 'REGIONAL'  ) ;
-insert into PARTIES values (  5 , 'BIDON', '05-MAY-05', 'NATIONAL'  ) ;
-insert into PARTIES values (  6 , 'BATTLE_CITY', '06-JUN-06', 'NATIONAL'  ) ;
-insert into PARTIES values (  7 , 'BORDEAUX', '07-JUL-07', 'LOCAL'  ) ;
+insert into PARTIES values (  1 , 'TALENCE', '2001-01-01', 'LOCAL'  ) ;
+insert into PARTIES values (  2 , 'PESSAC', '2002-02-02','LOCAL'  ) ;
+insert into PARTIES values (  3 , 'BORDEAUX', '2003-03-03', 'REGIONAL'  ) ;
+insert into PARTIES values (  4 , 'MOUAIS', '2004-04-04', 'REGIONAL'  ) ;
+insert into PARTIES values (  5 , 'BIDON', '2005-05-05', 'NATIONAL'  ) ;
+insert into PARTIES values (  6 , 'BATTLE_CITY', '2006-06-06', 'NATIONAL'  ) ;
+insert into PARTIES values (  7 , 'BORDEAUX', '2007-07-07', 'LOCAL'  ) ;
 
 commit;
 
