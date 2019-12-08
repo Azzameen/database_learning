@@ -17,3 +17,5 @@ drop view Liste_sans_deck;
 drop view Liste_collectionneur;
 drop view Nombre_de_cartes_par_joueur;
 drop view Classement_joueurs;
+drop view Cartes_par_joueur;
+drop view Joueur_rare;
