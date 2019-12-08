@@ -19,3 +19,4 @@ drop view Nombre_de_cartes_par_joueur;
 drop view Classement_joueurs;
 drop view Cartes_par_joueur;
 drop view Joueur_rare;
+drop view Meilleur_niveau;
