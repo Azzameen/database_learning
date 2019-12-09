@@ -8,7 +8,7 @@
   include("menu.php");
   try{
     //Connexion à MySql
-    $bdd = new PDO('mysql:host=localhost;dbname=cartes_a_collectionner;charset=utf8', 'root', 'Kaae7vad');
+    $bdd = new PDO('mysql:host=localhost;dbname=cartes_a_collectionner;charset=utf8', 'pchevalli001', '50nu68ku');
   }catch (Exception $e){
     die('Erreur : ' . $e->getMessage());
   }
@@ -24,7 +24,7 @@
 
     while($donnees = $req->fetch()){?>
       <li><strong><?php echo $donnees['TITRE'];?></strong>
-      , de nature <strong><?php echo $donnees['NATURE_CARTE']?></strong></br> 
+      , de nature <strong><?php echo $donnees['NATURE_CARTE']?></strong></br>
       <?php echo $donnees['DESC_CARTE']; ?></br></br></li>
 
       <?php
