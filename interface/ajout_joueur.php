@@ -15,9 +15,9 @@
 
       <p>
         <form method="post">
-          Pseudonyme :<input type="text" name="pseudonyme"/><br/>
-          Nom :       <input type="text" name="nom"/><br/>
-          Prénom :    <input type="text" name="prenom"/><br/></br>
+          Prénom : <input type="text" name="prenom"/><br/>
+          Nom : <input type="text" name="nom"/><br/>
+          Pseudonyme : <input type="text" name="pseudonyme"/><br/></br>
           <input type="submit" name="new_player" value="Ajouter joueur"/>
       </form>
       </p>
@@ -52,3 +52,4 @@
       <?php
       ?>
     </body>
+</html>
