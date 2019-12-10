@@ -67,11 +67,24 @@ Create view A as ( -- Trouver comment rename et mettre dans une autre vue obliga
   left join CARACTERISTIQUES on CARACTERISTIQUES.ID_CARACTERISTIQUES = POSSESSIONS_CARACTERISTIQUES.ID_CARACTERISTIQUES
 );
 
-Create view Meilleur_Caracteristiques as (
+Create view Meilleures_Caracteristiques as (
   Select distinct A.TYPE_CARTE, A.DESC_CARACTERISTIQUES from A
   inner join (
     Select TYPE_CARTE, max(VALEURS) MAX_VAl from A
     group by TYPE_CARTE) B
   on A.TYPE_CARTE = B.TYPE_CARTE
   where B.MAX_VAL = VALEURS
+);
+
+create view Classement_victoires as (
+  Select A.ID_JOUEUR, B.NB_VICTOIRE / A.NB_PARTIES WIN_RATE from
+    (Select JOUEURS.ID_JOUEUR, count(UTILISATIONS.ID_PARTIE) NB_PARTIES from JOUEURS
+    left join UTILISATIONS on UTILISATIONS.ID_JOUEUR = JOUEURS.ID_JOUEUR
+    group by JOUEURS.ID_JOUEUR) A
+    left join
+    (Select JOUEURS.ID_JOUEUR, count(ID_PARTIE) NB_VICTOIRE from JEU
+    right join JOUEURS on JOUEURS.ID_JOUEUR = JEU.ID_VICTOIRE
+    group by JOUEURS.ID_JOUEUR) B
+  on A.ID_JOUEUR = B.ID_JOUEUR
+  order by WIN_RATE DESC
 );

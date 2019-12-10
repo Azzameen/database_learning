@@ -19,4 +19,6 @@ drop view Nombre_de_cartes_par_joueur;
 drop view Classement_joueurs_qualite_collection;
 drop view Cartes_par_joueur;
 drop view Joueur_possession_carte_rare;
-drop view Meilleur_niveau;
+drop view A;
+drop view Meilleures_Caracteristiques;
+drop view Classement_victoires;
