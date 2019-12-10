@@ -198,10 +198,10 @@ commit;
 -- CARACTERISTIQUES
 insert into CARACTERISTIQUES values (1,'ATTAQUE', 2000);
 insert into CARACTERISTIQUES values (2,'ATTAQUE', 1000);
-insert into CARACTERISTIQUES values (3,'ATTAQUE', 500);
+insert into CARACTERISTIQUES values (3,'ATTAQUE', 3500);
 insert into CARACTERISTIQUES values (4,'DEFENSE', 2000);
 insert into CARACTERISTIQUES values (5,'DEFENSE', 1000);
-insert into CARACTERISTIQUES values (6,'DEFENSE', 500);
+insert into CARACTERISTIQUES values (6,'DEFENSE', 3500);
 insert into CARACTERISTIQUES values (7,'LINK', 2);
 insert into CARACTERISTIQUES values (8,'LINK', 4);
 
