@@ -1,77 +1,70 @@
+-- =======================================================
+-- Nombre de carte possedées par joueurs
+-- =======================================================
+
 Create view Nombre_de_cartes_par_joueur as(
-  Select JOUEURS.ID_JOUEUR,
+  Select JOUEURS.ID_JOUEUR, JOUEURS.NOM_JOUEUR, JOUEURS.PRENOM_JOUEUR, JOUEURS.PSEUDONYME,
   count(POSSESSIONS_EXEMPLAIRES.ID_EXEMPLAIRE) as TOTAL
   from POSSESSIONS_EXEMPLAIRES
-  inner join JOUEURS on JOUEURS.ID_JOUEUR = POSSESSIONS_EXEMPLAIRES.ID_JOUEUR
-  group by JOUEURS.ID_JOUEUR
+  right JOIN JOUEURS on JOUEURS.ID_JOUEUR = POSSESSIONS_EXEMPLAIRES.ID_JOUEUR
+  group by JOUEURS.ID_JOUEUR, JOUEURS.NOM_JOUEUR, JOUEURS.PRENOM_JOUEUR, JOUEURS.PSEUDONYME
 );
 
--- Les natural join sont obligatoires ?
+-- =======================================================
+-- Classement des joueurs en fonction de la valeur de leur deck
+-- =======================================================
+
 Create view Classement_joueurs_qualite_collection as (
-  Select ID_JOUEUR, NOM_JOUEUR, PRENOM_JOUEUR, PSEUDONYME,
+  Select JOUEURS.ID_JOUEUR, JOUEURS.NOM_JOUEUR, JOUEURS.PRENOM_JOUEUR, JOUEURS.PSEUDONYME,
   sum((EXEMPLAIRES.QUALITE/100)*APPARTENANCES.COTE) as VALEUR
   from JOUEURS
-  natural join POSSESSIONS_EXEMPLAIRES
-  natural join EXEMPLAIRES
-  natural join APPARTENANCES
-  group by ID_JOUEUR, NOM_JOUEUR, PRENOM_JOUEUR, PSEUDONYME
+  left join POSSESSIONS_EXEMPLAIRES on JOUEURS.ID_JOUEUR = POSSESSIONS_EXEMPLAIRES.ID_JOUEUR
+  inner join EXEMPLAIRES on EXEMPLAIRES.ID_EXEMPLAIRE = POSSESSIONS_EXEMPLAIRES.ID_EXEMPLAIRE
+  inner join APPARTENANCES on APPARTENANCES.ID_CARTE = EXEMPLAIRES.ID_CARTE
+  group by JOUEURS.ID_JOUEUR, JOUEURS.NOM_JOUEUR, JOUEURS.PRENOM_JOUEUR, JOUEURS.PSEUDONYME
   order by VALEUR desc
 );
 
+-- =======================================================
+-- Le nombre de fois pour chaque carte qu'elle apparait dans un deck
+-- =======================================================
+
 Create view Cartes_par_joueur as(
   Select CARTES.TITRE, sum(DECKS.ID_JOUEUR) AS NOMBRE_UTILISATIONS from (CARTES
-  inner join CONTENANCE on CARTES.ID_CARTE = CONTENANCE.ID_CARTE)
+  left join CONTENANCE on CARTES.ID_CARTE = CONTENANCE.ID_CARTE)
   inner join DECKS on CONTENANCE.ID_DECK = DECKS.ID_DECK
   group by CARTES.TITRE
 );
 
+-- =======================================================
+-- Donne le nombre de carte possedées par joueurs
+-- =======================================================
+
 Create view Joueur_possession_carte_rare as(
-Select JOUEURS.NOM_JOUEUR, count(JOUEURS.NOM_JOUEUR) AS NB_RARE from (JOUEURS
-inner join POSSESSIONS_EXEMPLAIRES on POSSESSIONS_EXEMPLAIRES.ID_JOUEUR = JOUEURS.ID_JOUEUR)
-inner join EXEMPLAIRES on EXEMPLAIRES.ID_EXEMPLAIRE = POSSESSIONS_EXEMPLAIRES.ID_EXEMPLAIRE
-where EXEMPLAIRES.ID_CARTE in
-(Select CARTES.ID_CARTE from CARTES
-  inner join APPARTENANCES on APPARTENANCES.ID_CARTE = CARTES.ID_CARTE
-  where APPARTENANCES.NB_TIRAGE <= 100) OR EXEMPLAIRES.DATE_IMPRESSION <= '01-JAN-2000'
-group by JOUEURS.NOM_JOUEUR
-order by NB_RARE DESC
-);
-
------------------------------ OU ---------------------------------------------------------------
-
-Create view Joueur_possession_carte_rare2 as(
-Select JOUEURS.NOM_JOUEUR, count(JOUEURS.NOM_JOUEUR) AS NB_RARE from (JOUEURS
-inner join POSSESSIONS_EXEMPLAIRES on POSSESSIONS_EXEMPLAIRES.ID_JOUEUR = JOUEURS.ID_JOUEUR)
-inner join EXEMPLAIRES on EXEMPLAIRES.ID_EXEMPLAIRE = POSSESSIONS_EXEMPLAIRES.ID_EXEMPLAIRE
-inner join CARTES on EXEMPLAIRES.ID_CARTE = CARTES.ID_CARTE
-inner join APPARTENANCES on APPARTENANCES.ID_CARTE = CARTES.ID_CARTE
+Select JOUEURS.NOM_JOUEUR, TMP.NB_RARE from JOUEURS
+left join
+(Select JOUEURS.ID_JOUEUR, count(JOUEURS.NOM_JOUEUR) AS NB_RARE from JOUEURS
+left join POSSESSIONS_EXEMPLAIRES on POSSESSIONS_EXEMPLAIRES.ID_JOUEUR = JOUEURS.ID_JOUEUR
+left join EXEMPLAIRES on EXEMPLAIRES.ID_EXEMPLAIRE = POSSESSIONS_EXEMPLAIRES.ID_EXEMPLAIRE
+left join CARTES on EXEMPLAIRES.ID_CARTE = CARTES.ID_CARTE
+left join APPARTENANCES on APPARTENANCES.ID_CARTE = CARTES.ID_CARTE
 where APPARTENANCES.NB_TIRAGE <= 100 OR EXEMPLAIRES.DATE_IMPRESSION <= '01-JAN-2000'
-group by JOUEURS.NOM_JOUEUR
-order by NB_RARE DESC
+group by JOUEURS.ID_JOUEUR
+order by NB_RARE DESC) TMP
+on JOUEURS.ID_JOUEUR = TMP.ID_JOUEUR
 );
 
-Create view Meilleur_niveau as (
-  Select CARACTERISTIQUES.DESC_CARACTERISTIQUES, T2.NIVEAU_CARTE, T2.TYPE_CARTE
-  from (CARACTERISTIQUES inner join POSSESSIONS_CARACTERISTIQUES on CARACTERISTIQUES.ID_CARACTERISTIQUES = POSSESSIONS_CARACTERISTIQUES.ID_CARACTERISTIQUES)
-  inner join
-    (Select CARTES.ID_CARTE, CARTES.NIVEAU_CARTE, CARTES.TYPE_CARTE from CARTES
-    natural join (
-      Select CARTES.TYPE_CARTE MAX_TYPE, max(CARTES.NIVEAU_CARTE) MAX_NIVEAU
-      From CARTES
-      group by CARTES.TYPE_CARTE) T1
-  where CARTES.TYPE_CARTE = MAX_TYPE and CARTES.NIVEAU_CARTE = MAX_NIVEAU) T2
-  on T2.ID_CARTE = POSSESSIONS_CARACTERISTIQUES.ID_CARTE
-);
+-- =======================================================
+-- Caracteristique dans laquelle chaque famille de classe est la meilleure
+-- =======================================================
 
-------------------------------- OU -----------------------------------------
-
-Create view TMP_POUR_CLASSEMENT_CARACTERISITIQUES as ( -- Trouver comment rename et mettre dans une autre vue obligatoire a faire avant de lancer celle la
+Create view A as ( -- Trouver comment rename et mettre dans une autre vue obligatoire a faire avant de lancer celle la
   Select CARACTERISTIQUES.DESC_CARACTERISTIQUES, CARTES.TYPE_CARTE, CARACTERISTIQUES.VALEURS, CARTES.TITRE from (CARTES
   left join POSSESSIONS_CARACTERISTIQUES on CARTES.ID_CARTE = POSSESSIONS_CARACTERISTIQUES.ID_CARTE)
   left join CARACTERISTIQUES on CARACTERISTIQUES.ID_CARACTERISTIQUES = POSSESSIONS_CARACTERISTIQUES.ID_CARACTERISTIQUES
 );
 
-Create view Meilleur_niveau as (
+Create view Meilleur_Caracteristiques as (
   Select distinct A.TYPE_CARTE, A.DESC_CARACTERISTIQUES from A
   inner join (
     Select TYPE_CARTE, max(VALEURS) MAX_VAl from A
