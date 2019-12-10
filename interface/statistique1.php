@@ -16,14 +16,13 @@
       $req = $bdd->query('Select JOUEURS.ID_JOUEUR, JOUEURS.NOM_JOUEUR, JOUEURS.PRENOM_JOUEUR, JOUEURS.PSEUDONYME,
       count(POSSESSIONS_EXEMPLAIRES.ID_EXEMPLAIRE) as TOTAL
       from POSSESSIONS_EXEMPLAIRES
-      inner join JOUEURS on JOUEURS.ID_JOUEUR = POSSESSIONS_EXEMPLAIRES.ID_JOUEUR
+      right JOIN JOUEURS on JOUEURS.ID_JOUEUR = POSSESSIONS_EXEMPLAIRES.ID_JOUEUR
       group by JOUEURS.ID_JOUEUR, JOUEURS.NOM_JOUEUR, JOUEURS.PRENOM_JOUEUR, JOUEURS.PSEUDONYME');
 
       while($donnees = $req->fetch()){?>
-        Prénom :     <?php echo $donnees['PRENOM_JOUEUR'];?></br>
-        Nom :        <?php echo $donnees['NOM_JOUEUR'];?></br>
-        Pseudonyme : <?php echo $donnees['PSEUDONYME'];?></br>
-        Nombre de cartes : <?php echo $donnees['TOTAL'];?></br></br>
+        Joueur :<strong> <?php echo $donnees['PRENOM_JOUEUR']; echo ' '.$donnees['NOM_JOUEUR'];?></strong></br>
+        Pseudonyme :<strong> <?php echo $donnees['PSEUDONYME'];?></strong></br>
+        Nombre de cartes : <strong> <?php echo $donnees['TOTAL'];?></strong></br></br>
       <?php
       }
       $req->closeCursor(); //Fin de traitement

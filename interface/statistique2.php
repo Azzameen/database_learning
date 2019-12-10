@@ -13,20 +13,19 @@
     <body>
       <h2>Classement des joueurs en fonction de la valeur de leur collection</h2>
       <?php
-      $req = $bdd->query('  Select ID_JOUEUR, NOM_JOUEUR, PRENOM_JOUEUR, PSEUDONYME,
-      sum((EXEMPLAIRES.QUALITE/100)*APPARTENANCES.COTE) as VALEUR
-      from JOUEURS
-      natural join POSSESSIONS_EXEMPLAIRES
-      natural join EXEMPLAIRES
-      natural join APPARTENANCES
-      group by ID_JOUEUR, NOM_JOUEUR, PRENOM_JOUEUR, PSEUDONYME
-      order by VALEUR desc');
+      $req = $bdd->query('  Select JOUEURS.ID_JOUEUR, JOUEURS.NOM_JOUEUR, JOUEURS.PRENOM_JOUEUR, JOUEURS.PSEUDONYME,
+  sum((EXEMPLAIRES.QUALITE/100)*APPARTENANCES.COTE) as VALEUR
+  from JOUEURS
+  left join POSSESSIONS_EXEMPLAIRES on JOUEURS.ID_JOUEUR = POSSESSIONS_EXEMPLAIRES.ID_JOUEUR
+  inner join EXEMPLAIRES on EXEMPLAIRES.ID_EXEMPLAIRE = POSSESSIONS_EXEMPLAIRES.ID_EXEMPLAIRE
+  inner join APPARTENANCES on APPARTENANCES.ID_CARTE = EXEMPLAIRES.ID_CARTE
+  group by JOUEURS.ID_JOUEUR, JOUEURS.NOM_JOUEUR, JOUEURS.PRENOM_JOUEUR, JOUEURS.PSEUDONYME
+  order by VALEUR desc');
 
       while($donnees = $req->fetch()){?>
-        Prénom :     <?php echo $donnees['PRENOM_JOUEUR'];?></br>
-        Nom :        <?php echo $donnees['NOM_JOUEUR'];?></br>
-        Pseudonyme : <?php echo $donnees['PSEUDONYME'];?></br>
-        Nombre de cartes : <?php echo $donnees['VALEUR'];?></br></br>
+        Joueur :<strong> <?php echo $donnees['PRENOM_JOUEUR']; echo ' '.$donnees['NOM_JOUEUR'];?></strong></br>
+        Pseudonyme : <strong> <?php echo $donnees['PSEUDONYME'];?></strong></br>
+        Valeur de la collection : <strong> <?php echo $donnees['VALEUR'];?> €</strong></br></br>
       <?php
       }
       $req->closeCursor(); //Fin de traitement

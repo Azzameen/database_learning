@@ -14,15 +14,13 @@
 
     <?php
     $req = $bdd->query('select * from JOUEURS
-  where JOUEURS.ID_JOUEUR not in
-  (select ID_JOUEUR from UTILISATIONS)');
+    where JOUEURS.ID_JOUEUR not in
+    (select ID_JOUEUR from UTILISATIONS)');
 
     while($donnees = $req->fetch()){?>
-      <li>
-        <strong>Pseudonyme : </strong><?php echo $donnees['PSEUDONYME'];?></br>
-        <strong>Prénom : </strong><?php echo $donnees['PRENOM_JOUEUR'];?></br>
-        <strong>Nom : </strong><?php echo $donnees['NOM_JOUEUR'];?></br>
-      </li></br>
+      Prénom :     <strong><?php echo $donnees['PRENOM_JOUEUR'];?></strong></br>
+      Nom :        <strong><?php echo $donnees['NOM_JOUEUR'];?></strong></br>
+      Pseudonyme : <strong><?php echo $donnees['PSEUDONYME'];?></strong></br></br>
 
       <?php
       }

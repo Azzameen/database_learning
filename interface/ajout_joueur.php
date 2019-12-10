@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Page d'Accueil</title>
+        <title>Ajout Joueur</title>
         <meta charset="utf-8" />
     </head>
 

@@ -23,13 +23,14 @@ commit ;
 -- ======================================================================
 
 -- JOUEURS
-insert into JOUEURS values ( 1, 'JOSEPH', 'JOESTAR', 'JOJO1') ;
-insert into JOUEURS values ( 2, 'JONATHAN', 'JOESTAR', 'JOJO2') ;
-insert into JOUEURS values ( 3, 'JOTARO', 'KUJO', 'JOJO3') ;
-insert into JOUEURS values ( 4, 'JOSUKE', 'HIGASHIKATA', 'JOJO4') ;
-insert into JOUEURS values ( 5, 'GIORNO', 'GIOVANNA', 'GIOGIO') ;
-insert into JOUEURS values ( 6, 'JOLYNE', 'CUJOH', 'JOJO5') ;
-insert into JOUEURS values ( 7, 'JOHNNY ', 'JOESTAR', 'JOJO6') ;
+insert into JOUEURS values ( 1, 'MUTO', 'YUGI', 'LE PHARAON') ;
+insert into JOUEURS values ( 2, 'KAIBA', 'SETO', 'SEIGNEUR DES DRAGONS') ;
+insert into JOUEURS values ( 3, 'WHEELER', 'JOEY', 'LE CHANCEUX') ;
+insert into JOUEURS values ( 4, 'HAGA', 'INSECTOR', 'MAITRE DES INSECTES') ;
+insert into JOUEURS values ( 5, 'RAPTOR', 'REX', 'ROI DES DINOSAURES') ;
+insert into JOUEURS values ( 6, 'VALENTINE', 'MAY', 'REINE DES HARPIES') ;
+insert into JOUEURS values ( 7, 'YUKI ', 'JADEN', 'HEROS DES ELEMENTS') ;
+insert into JOUEURS values ( 8, 'BAKURA', 'RYO', 'ROI DES VOLEURS');
 
 commit;
 
