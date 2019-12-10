@@ -6,12 +6,7 @@
 
   <?php
   include("menu.php");
-  try{
-    //Connexion à MySql
-    $bdd = new PDO('mysql:host=localhost;dbname=cartes_a_collectionner;charset=utf8', 'root', 'Kaae7vad');
-  }catch (Exception $e){
-    die('Erreur : ' . $e->getMessage());
-  }
+  include("connect_bdd.php");
   ?>
 
   <body>
@@ -59,8 +54,4 @@
 
     </ul>
   </body>
-  
-  <footer>
-    <address>Projet de SGBD</address>
-  </footer>
 </html>

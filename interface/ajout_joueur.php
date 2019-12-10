@@ -5,16 +5,12 @@
         <meta charset="utf-8" />
     </head>
 
-
+    <?php
+    include("menu.php");
+    include("connect_bdd.php");
+    ?>
 
     <body>
-      <?php include("menu.php");
-      try{
-        //Connexion à MySql
-        $bdd = new PDO('mysql:host=localhost;dbname=cartes_a_collectionner;charset=utf8', 'root', 'Kaae7vad');
-      }catch (Exception $e){
-        die('Erreur : ' . $e->getMessage());
-      }?>
       <h2>Ajouter un nouveau joueur</h2>
 
       <p>
@@ -29,22 +25,30 @@
       <?php
       $prenom = NULL; $nom = NULL; $pseudo = NULL;
       if(isset($_POST["pseudonyme"])){
-        $pseudo = $_POST["pseudonyme"];
+        $pseudo = strtoupper($_POST["pseudonyme"]);
       }
       if(isset($_POST["nom"])){
-        $nom = $_POST["nom"];
+        $nom = strtoupper($_POST["nom"]);
       }
       if(isset($_POST["prenom"])){
-        $prenom = $_POST["prenom"];
+        $prenom = strtoupper($_POST["prenom"]);
       }
       if($prenom != NULL && $nom != NULL && $pseudo != NULL){
         print("Bonjour $prenom $nom, aussi connu sous le nom de $pseudo.");
+        $req = $bdd->query('select max(ID_JOUEUR) from JOUEURS');
+        $donnee = $req->fetch();
+        $new_id = $donnee['max(ID_JOUEUR)']+1;
+        $insert = $bdd->prepare('insert into JOUEURS values (:id, :nom, :prenom, :pseudonyme)');
+        $insert->execute(array(
+          'id' => $new_id,
+          'prenom' => $prenom,
+          'nom' => $nom,
+          'pseudonyme' => $pseudo
+        ));
+        echo ' Vous avez été ajouté à la BDD.';
       }else{
         echo "Veuillez remplir tous les champs SVP";
       }?></br></br>
       <?php
-      $req = $bdd->query('select max(ID_JOUEUR) from JOUEURS');
-      $donnee = $req->fetch();
-      echo $donnee['max(ID_JOUEUR)'];
       ?>
     </body>
