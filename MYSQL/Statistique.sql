@@ -27,7 +27,7 @@ Create view Classement_joueurs_qualite_collection as (
 );
 
 -- =======================================================
--- Le nombre de fois pour chaque carte qu'elle apparait dans un deck
+-- Le nombre de fois pour chaque carte qu'elle apparait dans les decks
 -- =======================================================
 
 Create view Cartes_par_joueur as(
@@ -39,7 +39,7 @@ Create view Cartes_par_joueur as(
 );
 
 -- =======================================================
--- Donne le nombre de carte possedées par joueurs
+-- Donne le nombre de cartes rares possedées par joueurs
 -- =======================================================
 
 Create view Joueur_possession_carte_rare as(
