@@ -4,7 +4,7 @@ Le sujet du projet est l'implémentation d'une base de données de cartes à jou
 
 # Organisation du dossier
 
-Toutes les sources des requêtes SQL pour la création, le peuplement ou la suppression de la table, ainsi que les requêtes de consultation, de classement et de statistiques se trouve dans le dossier MYSQL.
+Toutes les sources des requêtes SQL pour la création, le peuplement ou la suppression de la table, ainsi que les requêtes de consultation, de classement et de statistiques se trouvent dans le dossier MYSQL.
 Les  documents de spécifications et le rapport se situent dans le dossier Specification.
 Les fichiers du site se situent dans le dossier interface.
 
