@@ -31,7 +31,7 @@ Create view Classement_joueurs_qualite_collection as (
 -- =======================================================
 
 Create view Cartes_par_joueur as(
-  Select CARTES.TITRE, coalesce(sum(DECKS.ID_JOUEUR),0) AS NOMBRE_UTILISATIONS from CARTES
+  Select CARTES.TITRE, coalesce(count(DECKS.ID_JOUEUR),0) AS NOMBRE_UTILISATIONS from CARTES
   left join (CONTENANCE
   inner join DECKS on CONTENANCE.ID_DECK = DECKS.ID_DECK)
   on CARTES.ID_CARTE = CONTENANCE.ID_CARTE
