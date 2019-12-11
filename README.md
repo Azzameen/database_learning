@@ -1,6 +1,16 @@
-# Construire la base de données avec MYSQL :
-## installer mysql (linux)
-lancer :
+# Présentation du sujet
+
+Le sujet du projet est l'implémentation d'une base de données de cartes à jouer (ici, pour des carte).
+
+# Organisation du dossier
+
+Toutes les sources des requêtes SQL pour la création, le peuplement ou la suppression de la table, ainsi que les requêtes de consultation, de classement et de statistiques se trouve dans le dossier MYSQL.
+Les  documents de spécifications et le rapport se situent dans le dossier Specification.
+Les fichiers du site se situent dans le dossier interface.
+
+# Construction de la base de données avec MYSQL :
+## installation de mysql (linux)
+
 ```bash
 sudo apt-get install mysql-server mysql-client
 ```
@@ -10,34 +20,34 @@ sudo mysqladmin -u root -h localhost password <password>
 ```bash
 sudo mysql -u root
 ```
-## construire la BDD
+
+## Construction de la base de données
+
 ```SQL
 create database <Nom_BDD>;
 ```
 ```SQL
 use <Nom_BDD>;
 ```
-## Créer les tables, nettoyer, ajouter des données :
-se placer dans le dossier contenant les différents scripts, puis :
 
-### Créer les tables
+### Création des tables
 ```SQL
-source CreationTable.sql;
+source MYSQL/CreationTable.sql;
 ```
-### Nettoyer les tables
+### Suppression des tables
 ```SQL
-source Clean.sql;
+source MYSQL/Clean.sql;
 ```
 
-### Ajouter les données/vues (exemples)
+### Ajout des données/vues (exemples)
 ```SQL
-source Donnees.sql;
+source MYSQL/Donnees.sql;
 ```
 
 ```SQL
-source Statistique.sql;
+source MYSQL/Statistique.sql;
 ```
 
 ```SQL
-source Consultation.sql;
+source MSQL/Consultation.sql;
 ```
