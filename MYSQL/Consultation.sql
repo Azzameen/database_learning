@@ -1,6 +1,6 @@
 create view Liste_type_carte as
   (select * from CARTES
-  where TYPE_CARTE = 'Monstre normal');
+  where TYPE_CARTE = 'Machine');
 
 create view Liste_sans_deck as
   (select ID_CARTE from CARTES
