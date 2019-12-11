@@ -2,7 +2,6 @@
 <html>
     <head>
         <title>Statistique 3</title>
-        <link rel="stylesheet" href="styles.css">
         <meta charset="utf-8" />
     </head>
 
