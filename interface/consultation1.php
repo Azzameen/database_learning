@@ -32,7 +32,16 @@
       }
       ?>" :</h4>
 
-    <ul>
+      <table border=5 cellpadding=3>
+        <tr>
+          <th><strong>Identifiant</strong></th>
+          <th><strong>Titre</strong></th>
+          <th><strong>Nature</strong></th>
+          <th><strong>Type</strong></th>
+          <th><strong>Niveau</strong></th>
+          <th><strong>Description</strong></th>
+        </tr>
+
     <?php
     $req = $bdd->prepare('select * from CARTES
     where NATURE_CARTE = ?');
@@ -40,18 +49,20 @@
       $req->execute(array($_POST['nature']));
     }
 
-    while($donnees = $req->fetch())
-    {
-    ?>
-    <li><strong><?php echo $donnees['TITRE'];?></strong> de niveau <strong><?php echo $donnees['NIVEAU_CARTE'];?></strong>
-    , de nature <strong><?php echo $donnees['NATURE_CARTE']?></strong> et de type <strong><?php echo $donnees['TYPE_CARTE']?></strong></br>
-    <?php echo $donnees['DESC_CARTE']; ?></br></br></li>
+    while($donnees = $req->fetch()){?>
+    <tr>
+        <td align="center"><?php echo $donnees['ID_CARTE'] ?></td>
+        <td><?php echo $donnees['TITRE'] ?></td>
+        <td><?php echo $donnees['NATURE_CARTE'] ?></td>
+        <td><?php echo $donnees['TYPE_CARTE'] ?></td>
+        <td align="center"><?php echo $donnees['NIVEAU_CARTE'] ?></td>
+        <td><?php echo $donnees['DESC_CARTE'] ?></td>
+    </tr>
 
     <?php
     }
     $req->closeCursor(); //Fin de traitement
     ?>
-
-    </ul>
+  </table></br>
   </body>
 </html>

@@ -83,7 +83,7 @@
 
       <?php
       }else{
-        echo "Sélectionnez un ID de joueur à modifier";
+        echo "Sélectionnez un joueur à modifier";
       }?>
     </body>
 </html>

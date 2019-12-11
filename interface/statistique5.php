@@ -12,6 +12,13 @@
 
     <body>
       <h2>Liste des types de cartes avec pour chacune la meilleure caractéristique</h2>
+
+      <table border=5 cellpadding=3>
+        <tr>
+          <th><strong>Type de carte</strong></th>
+          <th><strong>Caractéristique la plus haute</strong></th>
+        </tr>
+
       <?php
       $req = $bdd->query('Select distinct A.TYPE_CARTE, A.DESC_CARACTERISTIQUES from (
         Select CARACTERISTIQUES.DESC_CARACTERISTIQUES, CARTES.TYPE_CARTE, CARACTERISTIQUES.VALEURS, CARTES.TITRE from (CARTES
@@ -31,8 +38,10 @@
 
       <?php
       while($donnees = $req->fetch()){?>
-        Type de carte : <strong><?php echo $donnees['TYPE_CARTE'];?></strong></br>
-        Caractéristique la plus haute : <strong><?php echo $donnees['DESC_CARACTERISTIQUES'];?></strong></br></br>
+        <tr>
+          <td><?php echo $donnees['TYPE_CARTE'] ?></td>
+          <td align="center"><?php echo $donnees['DESC_CARACTERISTIQUES'] ?></td>
+        </tr>
       <?php
       }
       $req->closeCursor(); //Fin de traitement
