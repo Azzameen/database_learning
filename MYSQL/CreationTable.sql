@@ -156,39 +156,39 @@ create table CARACTERISTIQUES
 
 alter table JEU
   add constraint fk1_partie foreign key (ID_PARTIE)
-    references PARTIES(ID_PARTIE);
+    references PARTIES(ID_PARTIE) ON DELETE CASCADE;
 
 alter table JEU
   add constraint fk2_partie foreign key (ID_JOUEUR1)
-    references JOUEURS(ID_JOUEUR);
+    references JOUEURS(ID_JOUEUR) ON DELETE CASCADE;
 
 alter table JEU
   add constraint fk3_partie foreign key (ID_JOUEUR2)
-    references JOUEURS(ID_JOUEUR);
+    references JOUEURS(ID_JOUEUR) ON DELETE CASCADE;
 
 alter table UTILISATIONS
   add constraint fk1_utilisations foreign key (ID_PARTIE)
-    references PARTIES(ID_PARTIE);
+    references PARTIES(ID_PARTIE) ON DELETE CASCADE;
 
 alter table UTILISATIONS
   add constraint fk2_utilisations foreign key (ID_JOUEUR)
-    references JOUEURS(ID_JOUEUR);
+    references JOUEURS(ID_JOUEUR) ON DELETE CASCADE;
 
 alter table EXEMPLAIRES
   add constraint fk1_exemplaires foreign key (ID_EDITION)
-    references EDITIONS(ID_EDITION);
+    references EDITIONS(ID_EDITION) ON DELETE CASCADE;
 
 alter table APPARTENANCES
   add constraint fk1_appartenances foreign key (ID_EDITION)
-    references EDITIONS(ID_EDITION);
+    references EDITIONS(ID_EDITION) ON DELETE CASCADE;
 
 alter table APPARTENANCES
   add constraint fk2_appartenances foreign key (ID_CARTE)
-    references CARTES(ID_CARTE);
+    references CARTES(ID_CARTE) ON DELETE CASCADE;
 
 alter table DECKS
   add constraint fk1_decks foreign key (ID_JOUEUR)
-    references JOUEURS(ID_JOUEUR);
+    references JOUEURS(ID_JOUEUR) ON DELETE CASCADE;
 
 alter table CONTENANCE
   add constraint fk1_contenances foreign key (ID_DECK)
@@ -196,20 +196,20 @@ alter table CONTENANCE
 
 alter table CONTENANCE
   add constraint fk2_contenances foreign key (ID_CARTE)
-    references CARTES(ID_CARTE);
+    references CARTES(ID_CARTE)ON DELETE CASCADE;
 
 alter table POSSESSIONS_CARACTERISTIQUES
   add constraint fk1_possessions_cara foreign key (ID_CARTE)
-    references CARTES(ID_CARTE);
+    references CARTES(ID_CARTE) ON DELETE CASCADE;
 
 alter table POSSESSIONS_CARACTERISTIQUES
   add constraint fk2_possessions_cara foreign key (ID_CARACTERISTIQUES)
-    references CARACTERISTIQUES(ID_CARACTERISTIQUES);
+    references CARACTERISTIQUES(ID_CARACTERISTIQUES) ON DELETE CASCADE;
 
 alter table POSSESSIONS_EXEMPLAIRES
   add constraint fk1_possessions_exemplaires foreign key (ID_JOUEUR)
-    references JOUEURS(ID_JOUEUR);
+    references JOUEURS(ID_JOUEUR) ON DELETE CASCADE;
 
 alter table POSSESSIONS_EXEMPLAIRES
   add constraint fk2_possessions_exemplaires foreign key (ID_EXEMPLAIRE)
-    references EXEMPLAIRES(ID_EXEMPLAIRE);
+    references EXEMPLAIRES(ID_EXEMPLAIRE) ON DELETE CASCADE;
