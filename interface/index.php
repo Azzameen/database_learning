@@ -2,7 +2,6 @@
 <html>
     <head>
         <title>Page d'Accueil</title>
-        <link rel="stylesheet" href="styles.css">
         <meta charset="utf-8" />
         <!-- <link rel="stylesheet" type="text/css" href="Style.css"> -->
     </head>
@@ -18,12 +17,15 @@
 
       La base de données associée permet de gérer des collections de cartes à
       jouer (Yu-Gi-Oh dans notre cas).</br></br>
+
+      On dispose de requêtes de consultation et de statistiques en suivant les
+      différents liens du menu. Les premières pages permettent d'ajouter,
+      de modifier et de supprimer un joueur à la base de données.</br><br>
     </body>
 
     <footer>
       <address>
-        Projet de SGBD réalisé par Pierre CHEVALLIER, Corentin LE METAYER
-        et Clément BERTIN élèves de l'ENSEIRB-MATMECA.
+        Projet de SGBD réalisé par Pierre CHEVALLIER, Corentin LE METAYER.
       </address>
     </footer>
 </html>

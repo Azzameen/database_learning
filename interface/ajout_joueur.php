@@ -2,7 +2,6 @@
 <html>
     <head>
         <title>Ajout Joueur</title>
-        <link rel="stylesheet" href="styles.css">
         <meta charset="utf-8" />
     </head>
 
@@ -34,8 +33,10 @@
       if(isset($_POST["prenom"])){
         $prenom = strtoupper($_POST["prenom"]);
       }
-      if($prenom != NULL && $nom != NULL && $pseudo != NULL){
-        print("Bonjour $prenom $nom, aussi connu sous le nom de $pseudo.");
+      if($prenom != NULL && $nom != NULL && $pseudo != NULL){?>
+        Bonjour <strong><?php echo $prenom.' '.$nom?></strong>,
+        aussi connu sous le nom de <strong><?php echo $pseudo?></strong>.</br></br>
+        <?php
         $req = $bdd->query('select max(ID_JOUEUR) from JOUEURS');
         $donnee = $req->fetch();
         $new_id = $donnee['max(ID_JOUEUR)']+1;
