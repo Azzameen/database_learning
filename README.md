@@ -1,9 +1,43 @@
-#README
+# Construire la base de données avec MYSQL :
+## installer mysql (linux)
+lancer :
+```bash
+sudo apt-get install mysql-server mysql-client
+```
+```bash
+sudo mysqladmin -u root -h localhost password <password>
+```
+```bash
+sudo mysql -u root
+```
+## construire la BDD
+```SQL
+create database <Nom_BDD>;
+```
+```SQL
+use <Nom_BDD>;
+```
+## Créer les tables, nettoyer, ajouter des données :
+se placer dans le dossier contenant les différents scripts, puis :
 
-#Consultation
+### Créer les tables
+```SQL
+source CreationTable.sql;
+```
+### Nettoyer les tables
+```SQL
+source Clean.sql;
+```
 
--> On prend un type arbitraire mais il faudra changer plus tard pour prendre le choix de l'utilisateur
+### Ajouter les données/vues (exemples)
+```SQL
+source Donnees.sql;
+```
 
-#Statistique
+```SQL
+source Statistique.sql;
+```
 
-#Mise à jour
+```SQL
+source Consultation.sql;
+```
