@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Consultation 2</title>
+    <link rel="stylesheet" href="styles.css">
     <meta charset="utf-8" />
   </head>
 

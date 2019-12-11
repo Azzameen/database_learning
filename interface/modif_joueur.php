@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Modification Joueur</title>
+        <link rel="stylesheet" href="styles.css">
         <meta charset="utf-8" />
     </head>
 

@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Page d'Accueil</title>
+        <link rel="stylesheet" href="styles.css">
         <meta charset="utf-8" />
         <!-- <link rel="stylesheet" type="text/css" href="Style.css"> -->
     </head>
