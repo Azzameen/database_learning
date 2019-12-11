@@ -13,10 +13,11 @@
     <body>
       <h2>Liste des cartes avec le nombre de joueurs qui les utilisent dans leurs decks</h2>
       <?php
-      $req = $bdd->query('  Select CARTES.TITRE, sum(DECKS.ID_JOUEUR) AS NOMBRE_UTILISATIONS from (CARTES
-  left join CONTENANCE on CARTES.ID_CARTE = CONTENANCE.ID_CARTE)
-  inner join DECKS on CONTENANCE.ID_DECK = DECKS.ID_DECK
-  group by CARTES.TITRE');?>
+      $req = $bdd->query('select CARTES.TITRE, coalesce(count(DECKS.ID_JOUEUR),0) AS NOMBRE_UTILISATIONS from CARTES
+      left join (CONTENANCE
+      inner join DECKS on CONTENANCE.ID_DECK = DECKS.ID_DECK)
+      on CARTES.ID_CARTE = CONTENANCE.ID_CARTE
+      group by CARTES.TITRE');?>
 
       <?php
       while($donnees = $req->fetch()){?>

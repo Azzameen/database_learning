@@ -14,25 +14,25 @@
       <h2>Modifier un joueur existant de la base</h2>
 
       <?php
-      $req_id = $bdd->query('select max(ID_JOUEUR) from JOUEURS');
-      $donnee = $req_id->fetch();
-      $max_id = $donnee['max(ID_JOUEUR)'];
+      $req_id = $bdd->query('select ID_JOUEUR, PRENOM_JOUEUR, NOM_JOUEUR, PSEUDONYME from JOUEURS');
       ?>
 
       <form action="" method="post">
         Nouveau prénom : <input type="text" name="prenom"/><br/>
         Nouveau nom : <input type="text" name="nom"/><br/>
         Nouveau pseudonyme : <input type="text" name="pseudonyme"/><br/>
-        Identifiant du joueur à modifier :
+        Joueur à modifier :
         <select name="id_a_modif">
           <?php
-          $i = 1;
-          while($i<=$max_id){
-            echo "<option value=$i>$i</option>";
-            $i++;
+          while($donnee = $req_id->fetch()){
+            $id = $donnee['ID_JOUEUR'];
+            $prenom = $donnee['PRENOM_JOUEUR'];
+            $nom = $donnee['NOM_JOUEUR'];
+            $pseudo = $donnee['PSEUDONYME'];
+            echo "<option value=$id>$prenom, $nom, $pseudo</option>";
           }
           ?>
-        </select><br/></br>
+        </select>
         <input type="submit" name="new_player" value="Modifier joueur"/>
       </form></br>
 
