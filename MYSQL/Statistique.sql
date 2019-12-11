@@ -76,6 +76,10 @@ Create view Meilleures_Caracteristiques as (
   where B.MAX_VAL = VALEURS
 );
 
+-- =======================================================
+-- Classement des joueurs en fonction du ratio victoire défaite
+-- =======================================================
+
 create view Classement_victoires as (
   Select A.ID_JOUEUR, B.NB_VICTOIRE / A.NB_PARTIES WIN_RATE from
     (Select JOUEURS.ID_JOUEUR, count(UTILISATIONS.ID_PARTIE) NB_PARTIES from JOUEURS
